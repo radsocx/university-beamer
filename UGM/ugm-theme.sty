@@ -1,0 +1,136 @@
+% =========================================================
+% Custom Beamer Theme — mytheme.sty
+% =========================================================
+
+\ProvidesPackage{ugm-theme}
+
+% === Dependencies ===
+\usepackage{tikz}
+\usepackage{fontspec}
+\usepackage[cmyk]{xcolor}
+\usefonttheme{professionalfonts}
+
+\newcommand{\idnum}[1]{\def\insertidnum{#1}}
+
+
+% === Font Styles ===
+\setbeamerfont{title}{series=\bfseries,size=\Huge}
+\setbeamerfont{subtitle}{series=\bfseries,size=\Large}
+\setbeamerfont{frametitle}{series=\bfseries,size=\Large}
+\setbeamerfont{framesubtitle}{series=\bfseries,size=\large}
+
+
+
+% === Colors ===
+\setbeamercolor{title}{fg=black}
+\setbeamercolor{frametitle}{fg=black}
+\setbeamercolor{framesubtitle}{fg=black}
+\setbeamercolor{section in toc}{fg=black}
+\setbeamercolor{section in toc}{fg=black,bg=}
+\setbeamercolor{subsection in toc}{fg=black,bg=}
+\setbeamercolor{subsubsection in toc}{fg=black,bg=}
+
+% PMI Color Palette
+\definecolor{ugmBlue}{cmyk}{1, 0.35, 0, 0.60} % fixed syntax
+\definecolor{ugmGold}{cmyk}{0, 0.18, 1, 0}
+
+
+
+\setbeamercolor{ugmBlue}{bg=ugmBlue}
+\setbeamercolor{ugmGold}{bg=ugmGold}
+\setbeamercolor{sidebarbox}{use=ugmBlue, bg=ugmBlue}
+
+
+
+
+% === Remove Navigation Symbols ===
+\setbeamertemplate{navigation symbols}{}
+
+% === Background Bar ===
+\setbeamertemplate{background canvas}{%
+    \ifbeamer@plainframe
+        \hbox to \paperwidth{%
+        \hfill % push the next box to the right edge
+        \begin{beamercolorbox}[wd=.015\paperwidth,ht=\paperheight,dp=0pt,center]{ugmBlue}%
+        \end{beamercolorbox}%
+        }%
+\else
+    
+\fi
+
+
+
+    % \ifbeamer@plainframe
+
+    % \else
+        % \begin{beamercolorbox}[wd=.42\paperwidth,ht=0.02\paperheight]{pmiRed1}\end{beamercolorbox}%
+        % \begin{beamercolorbox}[wd=.26\paperwidth,ht=0.02\paperheight]{pmiRed2}\end{beamercolorbox}%
+        % \begin{beamercolorbox}[wd=.17\paperwidth,ht=0.02\paperheight]{pmiRed3}\end{beamercolorbox}%
+       %  \begin{beamercolorbox}[wd=.15\paperwidth,ht=0.02\paperheight]{pmiRed4}\end{beamercolorbox}%
+  % \fi
+}
+
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox to \paperwidth{%
+    \hspace{1em}\usebeamercolor[fg]{frametitle}\insertauthor%
+    \hfil%
+    \usebeamercolor[fg]{frametitle}\insertframenumber/\inserttotalframenumber
+    \hspace{1em}%
+  }%
+  \vskip1ex
+}
+
+% === Title Page Template ===
+\defbeamertemplate*{title page}{custom}[1][]{
+    \begin{center}
+        % {\includegraphics[width=0.3\linewidth]{logo.png}}\\[1cm]
+        {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\[0.4cm]
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{frametitle}\insertsubtitle}\\[1cm]
+        {\usebeamerfont{author}\usebeamercolor[fg]{frametitle}\insertauthor\par}
+        
+        {\usebeamerfont{author}\usebeamercolor[fg]{frametitle}\insertidnum\par}
+    \end{center}
+}
+
+% === Frame Title Template ===
+
+\setbeamertemplate{frametitle}{
+    \nointerlineskip
+    \vspace{1.2cm}
+    \vskip-1ex
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,leftskip=0.5cm]{frametitle}
+        \usebeamerfont{frametitle}\insertframetitle\\
+        \usebeamerfont{framesubtitle}\insertframesubtitle
+    \end{beamercolorbox}
+    \vspace{-0.5ex}
+}
+
+% === Itemize Style ===
+\setbeamertemplate{itemize item}{\color{black}$\bullet$}
+\setbeamertemplate{section in toc}{%
+  \leavevmode\leftskip=0em%
+  \raisebox{0.5pt}{\color{red!80!black}$\blacktriangleright$}\hspace{0.5em}%
+  \inserttocsection\par
+}
+
+\AtBeginSection[]{
+    \begin{frame}[plain]
+        \tableofcontents[currentsection] 
+    \end{frame}
+}
+
+\AtEndDocument{
+    \begin{frame}[plain]
+    \vfill
+    \centering
+        \usebeamerfont{title}\usebeamercolor[fg]{title}
+        Terima Kasih
+    \vfill      
+    \end{frame}
+}
+
+% === TikZ Defaults ===
+\tikzset{every picture/.append style={remember picture=false}}
+
+% === End of Theme ===
