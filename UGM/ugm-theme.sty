@@ -35,7 +35,6 @@
 \setbeamercolor{section in toc}{fg=black,bg=}
 \setbeamercolor{subsection in toc}{fg=black,bg=}
 \setbeamercolor{subsubsection in toc}{fg=black,bg=}
-
 % PMI Color Palette
 \definecolor{ugmBlue}{cmyk}{1, 0.35, 0, 0.60} % fixed syntax
 \definecolor{ugmGold}{cmyk}{0, 0.18, 1, 0}
@@ -76,16 +75,23 @@
   % \fi
 }
 
+
 \setbeamertemplate{footline}{
-  \leavevmode%
-  \hbox to \paperwidth{%
-    \hspace{1em}\usebeamercolor[fg]{frametitle}\insertauthor%
-    \hfil%
-    \usebeamercolor[fg]{frametitle}\insertframenumber/\inserttotalframenumber
-    \hspace{1em}%
-  }%
-  \vskip1ex
+  \leavevmode
+  \hbox{
+    \begin{beamercolorbox}[wd=.8\paperwidth,ht=2.5ex,dp=1ex,leftskip=1em]{ugmGold}%
+      \usebeamercolor[fg]{frametitle}\insertauthor\quad|\quad\insertidnum
+	  \hfill 
+	  \insertsection
+	  \hfill 
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.5ex,dp=1ex,rightskip=1em]{ugmBlue}%
+      \hfill\usebeamercolor[fg]{frametitle}\insertframenumber/\inserttotalframenumber
+    \end{beamercolorbox}
+  }
+  \vskip0pt
 }
+
 
 % === Title Page Template ===
 \defbeamertemplate*{title page}{custom}[1][]{
@@ -120,11 +126,7 @@
   \inserttocsection\par
 }
 
-\AtBeginSection[]{
-    \begin{frame}[plain]
-        \tableofcontents[currentsection] 
-    \end{frame}
-}
+
 
 \AtEndDocument{
     \begin{frame}[plain]
