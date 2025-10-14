@@ -6,9 +6,15 @@
 
 % === Dependencies ===
 \usepackage{tikz}
-\usepackage{fontspec}
 \usepackage[cmyk]{xcolor}
+\usepackage{graphics}
 \usefonttheme{professionalfonts}
+\ifdefined\directlua
+  \usepackage{fontspec}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[nomath]{lmodern}
+\fi
 
 \newcommand{\idnum}[1]{\def\insertidnum{#1}}
 
@@ -84,7 +90,7 @@
 % === Title Page Template ===
 \defbeamertemplate*{title page}{custom}[1][]{
     \begin{center}
-        % {\includegraphics[width=0.3\linewidth]{logo.png}}\\[1cm]
+        {\includegraphics[width=0.3\linewidth]{resources/logo}}\\[1cm]
         {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\[0.4cm]
         {\usebeamerfont{subtitle}\usebeamercolor[fg]{frametitle}\insertsubtitle}\\[1cm]
         {\usebeamerfont{author}\usebeamercolor[fg]{frametitle}\insertauthor\par}
