@@ -75,21 +75,24 @@
   % \fi
 }
 
-
+% === Bottom bar ===
 \setbeamertemplate{footline}{
-  \leavevmode
-  \hbox{
-    \begin{beamercolorbox}[wd=.8\paperwidth,ht=2.5ex,dp=1ex,leftskip=1em]{ugmGold}%
-      \usebeamercolor[fg]{frametitle}\insertauthor\quad|\quad\insertidnum
-	  \hfill 
-	  \insertsection
-	  \hfill 
-    \end{beamercolorbox}
-    \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.5ex,dp=1ex,rightskip=1em]{ugmBlue}%
-      \hfill\usebeamercolor[fg]{frametitle}\insertframenumber/\inserttotalframenumber
-    \end{beamercolorbox}
-  }
-  \vskip0pt
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.5ex,dp=1.5ex,leftskip=0.5em,rightskip=0em]{ugmGold}%
+      \usebeamercolor[fg]{black}\centering\insertauthor
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.5ex,dp=1.5ex,leftskip=0.5em,rightskip=0em]{ugmGold}%
+      \usebeamercolor[fg]{black}\centering\insertidnum
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.5ex,dp=1.5ex,leftskip=0.5em,rightskip=0em]{ugmGold}%
+      \usebeamercolor[fg]{black}\centering\insertsection
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.5ex,dp=1.5ex,rightskip=1em]{ugmBlue}%
+      \hfill\usebeamercolor[fg]{white}\insertframenumber\,/\,\inserttotalframenumber
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
 }
 
 
