@@ -8,16 +8,17 @@
 \usepackage{tikz}
 \usepackage[cmyk]{xcolor}
 \usepackage{graphics}
-\usefonttheme{professionalfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
 \ifdefined\directlua
   \usepackage{fontspec}
 \else
-  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
   \usepackage[nomath]{lmodern}
 \fi
 
 \newcommand{\idnum}[1]{\def\insertidnum{#1}}
-
+\newcommand{\spaced}[1]{{\addfontfeatures{LetterSpace=15}#1}}
 
 % === Font Styles ===
 \setbeamerfont{title}{series=\bfseries,size=\Huge}
@@ -25,28 +26,22 @@
 \setbeamerfont{frametitle}{series=\bfseries,size=\Large}
 \setbeamerfont{framesubtitle}{series=\bfseries,size=\large}
 
-
-
 % === Colors ===
-\setbeamercolor{title}{fg=black}
-\setbeamercolor{frametitle}{fg=black}
-\setbeamercolor{framesubtitle}{fg=black}
+\setbeamercolor{title}{fg=ugmBlue}
+\setbeamercolor{frametitle}{fg=ugmBlue}
+\setbeamercolor{framesubtitle}{fg=ugmBlue}
 \setbeamercolor{section in toc}{fg=black}
 \setbeamercolor{section in toc}{fg=black,bg=}
 \setbeamercolor{subsection in toc}{fg=black,bg=}
 \setbeamercolor{subsubsection in toc}{fg=black,bg=}
-% PMI Color Palette
+\setbeamercolor{whitebox}{bg=white, fg=black}
+
+% UGM Color Palette
 \definecolor{ugmBlue}{cmyk}{1, 0.35, 0, 0.60} % fixed syntax
 \definecolor{ugmGold}{cmyk}{0, 0.18, 1, 0}
-
-
-
 \setbeamercolor{ugmBlue}{bg=ugmBlue}
 \setbeamercolor{ugmGold}{bg=ugmGold}
 \setbeamercolor{sidebarbox}{use=ugmBlue, bg=ugmBlue}
-
-
-
 
 % === Remove Navigation Symbols ===
 \setbeamertemplate{navigation symbols}{}
@@ -55,57 +50,91 @@
 \setbeamertemplate{background canvas}{%
     \ifbeamer@plainframe
         \hbox to \paperwidth{%
-        \hfill % push the next box to the right edge
-        \begin{beamercolorbox}[wd=.015\paperwidth,ht=\paperheight,dp=0pt,center]{ugmBlue}%
-        \end{beamercolorbox}%
+        \hfill 
+        \vbox{
+          \begin{beamercolorbox}[wd=0.015\paperwidth,ht=0.13\paperwidth,dp=0pt,left]{ugmGold}%
+          \end{beamercolorbox}%
+          \begin{beamercolorbox}[wd=0.015\paperwidth,ht=0.83\paperheight,dp=0pt,center]{ugmBlue}%
+          \end{beamercolorbox}%
+          }%
         }%
 \else
-    
+\vbox to 0.8\paperheight{
+  \vspace{2em}
+  \hbox to 0.95\paperwidth{
+    \hfill
+    \includegraphics[width=2cm]{resources/logo}
+  }
+  \vfill
+}
 \fi
-
-
-
-    % \ifbeamer@plainframe
-
-    % \else
-        % \begin{beamercolorbox}[wd=.42\paperwidth,ht=0.02\paperheight]{pmiRed1}\end{beamercolorbox}%
-        % \begin{beamercolorbox}[wd=.26\paperwidth,ht=0.02\paperheight]{pmiRed2}\end{beamercolorbox}%
-        % \begin{beamercolorbox}[wd=.17\paperwidth,ht=0.02\paperheight]{pmiRed3}\end{beamercolorbox}%
-       %  \begin{beamercolorbox}[wd=.15\paperwidth,ht=0.02\paperheight]{pmiRed4}\end{beamercolorbox}%
-  % \fi
 }
 
 % === Bottom bar ===
 \setbeamertemplate{footline}{
   \leavevmode%
   \hbox{%
-    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.5ex,dp=1.5ex,leftskip=0.5em,rightskip=0em]{ugmGold}%
-      \usebeamercolor[fg]{black}\centering\insertauthor
+    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.5ex,dp=1.5ex,leftskip=0.5em,rightskip=0em]{ugmBlue}%
+      \color{white}\insertauthor
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.5ex,dp=1.5ex,leftskip=0.5em,rightskip=0em]{ugmGold}%
-      \usebeamercolor[fg]{black}\centering\insertidnum
+
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.5ex,leftskip=0.5em,rightskip=0em]{ugmBlue}%
+      \color{white}\centering\tiny{\textbf{\hspace{0.5cm}
+        L\kern0.2em O\kern0.2em C\kern0.2em A\kern0.2em L\kern0.2em L\kern0.2em Y\kern0.4em R\kern0.2em O\kern0.2em O\kern0.2em T\kern0.2em E\kern0.2em D,\kern0.4em G\kern0.2em L\kern0.2em O\kern0.2em B\kern0.2em A\kern0.2em L\kern0.2em L\kern0.2em Y\kern0.4em  R\kern0.2em E\kern0.2em S\kern0.2em P\kern0.2em E\kern0.2em C\kern0.2em T\kern0.2em E\kern0.2em D}}
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.5ex,dp=1.5ex,leftskip=0.5em,rightskip=0em]{ugmGold}%
-      \usebeamercolor[fg]{black}\centering\insertsection
-    \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.5ex,dp=1.5ex,rightskip=1em]{ugmBlue}%
-      \hfill\usebeamercolor[fg]{white}\insertframenumber\,/\,\inserttotalframenumber
+
+    % I'm removing these for now to better fit the original template
+
+    % \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.5ex,dp=1.5ex,leftskip=0.5em,rightskip=0em]{ugmBlue}%
+    %   \color{white}\centering\insertidnum
+    % \end{beamercolorbox}%
+    % \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.5ex,dp=1.5ex,leftskip=0.5em,rightskip=0em]{ugmBlue}%
+    %  \color{white}\centering\insertsection
+    % \end{beamercolorbox}%
+
+
+    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.5ex,dp=1.5ex,rightskip=1em]{ugmGold}%
+      \hbox to .23\paperwidth{%
+        \hfill 
+        \makebox[0pt][c]{\usebeamercolor[fg]{title}\textbf{ugm.ac.id} }
+        \hfill
+        \makebox[0pt][r]{\insertframenumber\,/\,\inserttotalframenumber}%
+      }%
     \end{beamercolorbox}%
   }%
   \vskip0pt%
 }
 
 
-% === Title Page Template ===
+% === Title Page  ===
 \defbeamertemplate*{title page}{custom}[1][]{
-    \begin{center}
-        {\includegraphics[width=0.3\linewidth]{resources/logo}}\\[1cm]
-        {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\[0.4cm]
-        {\usebeamerfont{subtitle}\usebeamercolor[fg]{frametitle}\insertsubtitle}\\[1cm]
-        {\usebeamerfont{author}\usebeamercolor[fg]{frametitle}\insertauthor\par}
+  
+    \begin{columns}[c]
+      \begin{column}{0.6\linewidth}
+        \hspace{0.5cm}
+        \includegraphics[width=0.5\linewidth]{resources/logo}\\
+        \includegraphics[height=0.6\paperheight]{resources/balairung.png}\\[1.5em]
+
+        % is there a better way to do this? istg this seems so janky
+
+        \usebeamercolor[fg]{subtitle}\tiny{\textbf{\hspace{0.5cm}
+        L\kern0.2em O\kern0.2em C\kern0.2em A\kern0.2em L\kern0.2em L\kern0.2em Y\kern0.4em R\kern0.2em O\kern0.2em O\kern0.2em T\kern0.2em E\kern0.2em D,
+        \\ \vspace{0.5em}\hspace{0.6cm}G\kern0.2em L\kern0.2em O\kern0.2em B\kern0.2em A\kern0.2em L\kern0.2em L\kern0.2em Y\kern0.4em  R\kern0.2em E\kern0.2em S\kern0.2em P\kern0.2em E\kern0.2em C\kern0.2em T\kern0.2em E\kern0.2em D}}
         
-        {\usebeamerfont{author}\usebeamercolor[fg]{frametitle}\insertidnum\par}
-    \end{center}
+        
+      \end{column}
+      \begin{column}{0.5\linewidth}
+        {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\[2em]
+        \begin{beamercolorbox}[wd=1cm,ht=0.2mm,dp=0.1mm,leftskip=0.5em,rightskip=0em]{ugmGold}
+        \end{beamercolorbox}
+        \vspace{1em}
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{frametitle}\insertsubtitle}\\[1em]
+        {\usebeamerfont{author}\usebeamercolor[fg]{frametitle}\insertauthor\par}
+        {\usebeamerfont{author}\usebeamercolor[fg]{frametitle}\insertidnum\par}  
+
+      \end{column}
+    \end{columns}
+
 }
 
 % === Frame Title Template ===
@@ -125,19 +154,35 @@
 \setbeamertemplate{itemize item}{\color{black}$\bullet$}
 \setbeamertemplate{section in toc}{%
   \leavevmode\leftskip=0em%
-  \raisebox{0.5pt}{\color{red!80!black}$\blacktriangleright$}\hspace{0.5em}%
+  \raisebox{0.5pt}{\usebeamercolor[fg]{title}$\blacktriangleright$}\hspace{0.5em}%
   \inserttocsection\par
 }
 
 
-
+% === Thank You Page === 
 \AtEndDocument{
-    \begin{frame}[plain]
-    \vfill
-    \centering
-        \usebeamerfont{title}\usebeamercolor[fg]{title}
-        Terima Kasih
-    \vfill      
+    \begin{frame}
+        \hbox to \paperwidth{
+          \hfill
+          \begin{beamercolorbox}[wd=4cm,ht=2cm,dp=1ex,rightskip=0.5cm]{whitebox}\end{beamercolorbox}
+        }
+
+
+        \begin{columns}[t]
+          \begin{column}{0.5\paperwidth}
+            \begin{center}
+              \includegraphics[height=1.7cm]{resources/logo}\\[1cm]
+                \textit{“Ini adalah text untuk kutipan atau qoutes yang menggunakan font gama-sans light italic”}
+                \vfil
+            \end{center}
+            
+            
+          \end{column}
+          \begin{column}{0.5\paperwidth}
+            \vspace*{-2em}
+            \scalebox{-1}[1]{\includegraphics[height=0.6\paperheight]{resources/balairung.png}}
+          \end{column}
+        \end{columns}
     \end{frame}
 }
 
